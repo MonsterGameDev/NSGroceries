@@ -1,0 +1,31 @@
+<StackLayout orientation="vertical" #container>
+  <Image
+    src="res://logo_login"
+    stretch="none"
+    horizontalAlignment="center"
+  ></Image>
+  <TextField
+    #email
+    [(ngModel)]="user.email"
+    hint="Enter Email"
+    autoCorrect="false"
+    keyboardType="email"
+    autocapitalizationType="none"
+  ></TextField>
+  <TextField
+    #password
+    [(ngModel)]="user.password"
+    secure="true"
+    hint="Password"
+  ></TextField>
+
+  <Button
+    [text]="isLoggingIn ? 'Sign In' : 'Sign Up'"
+    class="submit-button"
+    (tap)="submit()"
+  ></Button>
+  <Button
+    [text]="isLoggingIn ? 'Sign Up for Groceries' : 'Back to Log In'"
+    (tap)="toggleDisplay()"
+  ></Button>
+</StackLayout>

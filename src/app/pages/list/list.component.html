@@ -1,0 +1,25 @@
+<ActionBar title="Groceries">
+  <ActionItem text="Share" (tap)="share()" ios.systemIcon="9" ios.position="right" android.systemIcon="ic_menu_share_holo_dark"></ActionItem>
+</ActionBar>
+<GridLayout rows="auto, *">
+  <GridLayout row="0" columns="*, auto" class="add-bar">
+    <TextField
+      [(ngModel)]="grocery"
+      #groceryText
+      hint="Enter grocery item"
+      col="0"
+    ></TextField>
+    <Image col="1" src="res://add" (tap)="add()"></Image>
+  </GridLayout>
+  <ListView row="1" [items]="groceryList" [class.visible]="listLoaded" class="small-spacing">
+    <ng-template let-item="item">
+      <GridLayout columns="*, auto">
+          <Label [text]="item.name" class="medium-spacing" col="0"></Label>
+          <Image src="res://delete" col="1" (tap)="delete(item)"></Image>
+      </GridLayout>
+      
+    </ng-template>
+  </ListView>
+  <ActivityIndicator [busy]="isLoading" [visibility]="isLoading? 'hidden' : 'collapse'"
+    verticalAlignment="center" horizontalAlignment="center" row="1"></ActivityIndicator>
+</GridLayout>
